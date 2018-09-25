@@ -18,7 +18,7 @@
 <style>
 
   .mapboxgl-popup {
-      max-width: 50%
+      max-width: 50%;
       font: 16px 'Open Sans', sans-serif;
   }
 
@@ -371,14 +371,10 @@ var popup = new mapboxgl.Popup({
 // When a click event occurs on a feature in the states layer, open a popup at the
 // location of the click, with description HTML from its properties.
 map.on('click', 'Tax Parcels', function (e) {
+        let pdetails = "https://psearch.kitsapgov.com/pdetails/Details.aspx?parcel=" + e.features[0].properties.RP_ACCT_ID;
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML("Coordinates : " + e.lngLat.lng + ", " + e.lngLat.lat
-            + "<br>Polygon ID : " + e.features[0].properties.PID
-            + "<br>Assessment / Taxation System ID : " + e.features[0].properties.APN
-            + "<br>Land Information System ID : " + e.features[0].properties.RP_ACCT_ID
-            + "<br>Parcel Area (Cubic Feet) : " + e.features[0].properties.SHAPE_AREA
-            + "<br>Section ID : " + e.features[0].properties.SID)
+            .setHTML("<iframe src='" + pdetails + "' height='815px' width='375px'></iframe>")
             .addTo(map);
 });
 
